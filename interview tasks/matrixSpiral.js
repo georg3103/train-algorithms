@@ -1,12 +1,13 @@
 'use strict'
 
-var zebraMatrix = function (n) {
+function zebraMatrix (n) {
     var arr = [];
-    var start = 0;
-    var end = n*n;
-    var rows = 0;
-    var col = 0;
-    var lap = n;
+
+    var start = 1;
+    var startColumn = 0;
+    var endColumn = n - 1;
+    var startRow = 0;
+    var endRow = n - 1;
     
     // Make empty array (zeroes as a value in cell)
     for (var i = 0; i < n; i++) {
@@ -17,53 +18,38 @@ var zebraMatrix = function (n) {
     }
     
     // Fill in num data
-    while (start <= end) {
-        for (var j = 0; j < lap; j++) {
-            if(start >= end) {
-                return;
-            }
+    while (startColumn <= endColumn && startRow <= endRow) {
+        // Top row
+        for (var i = startRow; i <= endColumn; i++) {
+            arr[startRow][i] = start;
             start++
-            arr[rows][col] = start;
-            col++;
         }
-        col--;
-        rows++;
-        for (var i = 0; i < col; i++) {
-            if(start >= end) {
-                return;
-            }
+        startRow++;
+        // Right column
+        for (let i = startRow; i <= endRow; i++) {
+            arr[i][endColumn] = start;
             start++;
-            arr[rows][col] = start;
-            rows++;
         }
-        rows--;
-        col--;
-        for (var i = 0; i < rows; i++) {
-            if(start >= end) {
-                return;
-            }
+        endColumn--;
+        // Bottom row
+        for (let i = endColumn; i >= startColumn; i--) {
+            arr[endRow][i] = start;
             start++;
-            arr[rows][col] = start;
-            col--;
         }
-        rows--;
-        col++;
-        for (var j = 0; j <= rows; j++) {
-            if(start >= end) {
-                return;
-            }
-            start++
-            arr[rows][col] = start;
-            rows--;
+        endRow--;
+        // start column
+        for (let i = endRow; i >= startRow; i--) {
+            arr[i][startColumn] = start;
+            start++;
         }
-        // next lap
-        rows++;
-        col++;
-        lap = lap - 2;
-    };
+        startColumn++;
+    }
+  return arr;
 };
-    
-zebraMatrix(2); // works
-zebraMatrix(3); // works
-zebraMatrix(4); // does not work
-zebraMatrix(5); // does not work
+
+module.exports = zebraMatrix;
+
+// zebraMatrix(2); // works
+// zebraMatrix(3); // works
+// zebraMatrix(4); // works
+// zebraMatrix(5); // works
