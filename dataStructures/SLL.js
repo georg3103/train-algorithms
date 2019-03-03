@@ -135,4 +135,10 @@ class SSL {
 		}
 		return this;
 	}
+
+	get getLength() {
+		return this.length;
+	}
 }
+
+module.exports = SSL;

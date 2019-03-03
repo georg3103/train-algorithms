@@ -166,3 +166,5 @@ class DLL {
 // Removal - O(1)
 // Searching - O(n) / O(n/2)
 // Access - O(n) / O(n/2)
+
+module.exports = DLL;

@@ -39,6 +39,10 @@ class Queue {
 		this.size -= 1;
 		return node.val;
 	}
+
+	get getSize() {
+		return this.size;
+	}
 }
 
 // Big O
@@ -47,3 +51,5 @@ class Queue {
 // Recap
 // 1) FIFO principle
 // 2) Usage: processing tasks
+
+module.exports = Queue;

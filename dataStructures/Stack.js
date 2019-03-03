@@ -5,7 +5,7 @@ class Node {
 	}
 }
 
-class Stack {
+export class Stack {
 	constructor() {
 		this.head = null;
 		this.tail = null;
@@ -48,3 +48,5 @@ class Stack {
 // Recap
 // 1) LIFO principle
 // 2) Usage: call stack, undo/redo, routing ...
+
+module.exports = Stack;
